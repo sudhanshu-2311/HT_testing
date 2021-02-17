@@ -25,7 +25,8 @@ class _MyAppState extends State<MyApp> {
   //
   @override
   void initState() {
-    getvalidation();
+
+    getvalidation();    //Checking if user is already logged in
     // TODO: implement initState
     super.initState();
   }

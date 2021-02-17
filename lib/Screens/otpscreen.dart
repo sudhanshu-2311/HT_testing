@@ -5,8 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:authentication_app/Screens/PhoneVerification.dart';
 import 'package:authentication_app/constants/TextFormLogin.dart';
 
-
-
 class otpscreen extends StatefulWidget {
   String verificationId, phone;
   otpscreen({Key key, @required this.verificationId, @required this.phone})
@@ -36,6 +34,7 @@ class _otpscreenState extends State<otpscreen> {
                   'Verify Mobile Number',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
+
                 SizedBox(
                   height: 5.0,
                 ),
@@ -49,10 +48,16 @@ class _otpscreenState extends State<otpscreen> {
                   height: 25.0,
                 ),
 
-                LoginTextFormField(codeController: _codeController,hintText: 'Enter Verification Code',iconData: Icons.mobile_friendly,),
+                LoginTextFormField(
+                  codeController: _codeController,
+                  hintText: 'Enter Verification Code',
+                  iconData: Icons.mobile_friendly,
+                ),
+
                 SizedBox(
                   height: 6.0,
                 ),
+
                 showalert(),
 
                 SizedBox(
@@ -128,9 +133,10 @@ class _otpscreenState extends State<otpscreen> {
                     _firebaseAuth
                         .signInWithCredential(_credential)
                         .then((UserCredential result) {
-                          if(widget.phone!=null)
-                            sharedPreferences.setString('phone', widget.phone);
-                            Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+                      if (widget.phone != null)
+                        sharedPreferences.setString('phone', widget.phone);
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/home', (Route<dynamic> route) => false);
                     }).catchError((e) {
                       setState(() {
                         _error = e.code;
@@ -172,5 +178,3 @@ class _otpscreenState extends State<otpscreen> {
     }
   }
 }
-
-
